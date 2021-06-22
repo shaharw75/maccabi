@@ -117,17 +117,18 @@ app.get('/deleteUser', (req, res) => {
     var fs = require('fs');
     try{
         var data = fs.readFileSync('users.json', 'utf8');
-        
+        var found = false;
         var json = JSON.parse(data);
         for (let [i, user] of json.entries()) {
             if (user.userName === userName) {
+                found = true;
                 json.splice(i, 1);
                 break;
             }
          }
         
         fs.writeFileSync('users.json',JSON.stringify(json));
-        res.json({message: 'OK'});
+        res.json({message: found ? "OK" : "FAILED"});
     }
     catch(ex){
         console.log(ex);
@@ -162,6 +163,7 @@ app.get('/getUser', (req, res) => {
     try{
         var data = fs.readFileSync('users.json', 'utf8');
         var json = JSON.parse(data);
+
         var element = {};
         for (let [i, user] of json.entries()) {
             if (user.userName === userName) {
@@ -171,7 +173,7 @@ app.get('/getUser', (req, res) => {
          }
         
         
-        res.json({message: JSON.parse(element)});
+        res.json({message: JSON.stringify(element)});
     }
     catch(ex){
         console.log(ex);
