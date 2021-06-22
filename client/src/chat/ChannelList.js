@@ -29,7 +29,9 @@ export class ChannelList extends React.Component {
         }
         return (
             <div className='channel-list'>
-                <b>Current Channel: {this.state.currentChannel}</b>
+                <b>Current User: {this.props.currentUser}</b>
+                <br/>
+                <b>Current Channel: {this.state.currentChannel}</b><br/>
                 {list}
             </div>);
     }

@@ -122,6 +122,7 @@ app.get('/deleteUser', (req, res) => {
         for (let [i, user] of json.entries()) {
             if (user.userName === userName) {
                 json.splice(i, 1);
+                break;
             }
          }
         

@@ -44,9 +44,9 @@ class App extends React.Component {
           <div className="App">
             
             <Router>
-            <Link to="/login">Login</Link>
+            <Link to="/login" className="lnk">Login</Link>
             &nbsp;&nbsp;
-            <Link onClick={() => this.handleLogout()}>Logout</Link>
+            <Link onClick={() => this.handleLogout()}  className="lnk">Logout</Link>
             <br/><br/>
             <Switch>
             <Route path="/login/" component={() => <Login setCurrentUser={this.handleSetCurrentUser} history={useHistory()}/>} />

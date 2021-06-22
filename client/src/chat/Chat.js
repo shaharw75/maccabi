@@ -80,7 +80,7 @@ export class Chat extends React.Component {
                 
                 
                 
-                <ChannelList channels={this.state.channels} onSelectChannel={this.handleChannelSelect} />
+                <ChannelList channels={this.state.channels} onSelectChannel={this.handleChannelSelect} currentUser={this.props.state.currentUser}/>
                 <MessagesPanel onSendMessage={this.handleSendMessage} channel={this.state.channel} currentUser={this.props.state.currentUser} />
                 
             </div>

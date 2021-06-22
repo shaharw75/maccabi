@@ -1,5 +1,7 @@
 import React from "react";
 import $ from "jquery";
+import './Login.css';
+
 window.jQuery = $;
 window.$ = $;
 global.jQuery = $;
@@ -31,15 +33,30 @@ export class Login extends React.Component {
   render() {
 
     return (
-      <div>
+      <div style={{width:'100%'}}>
+        <div class="loginCube">
         <b>Please Login / Register:</b>
+        <br/><br/>
+        <div>
+        <div className="cubeLeft">
+          UserName:
+        </div> 
+        <div className="cubeRight">
+          <input type="text" id="userName" />
+        </div>
+        </div>
+        <br /><br/>
+        <div>
+          <div className="cubeLeft">
+        Password: 
+        </div>
+        <div className="cubeRight">
+        <input type="password" id="password" /></div>
+        </div>
         <br />
-        UserName: <input type="text" id="userName" />
         <br />
-        Password: <input type="text" id="password" />
-        <br />
-        <br />
-        <button onClick={this.handleLogin}>LOGIN</button>
+        <button className="btn" onClick={this.handleLogin}>LOGIN</button>
+        </div>
       </div>
     );
   }

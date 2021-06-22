@@ -1,0 +1,26 @@
+.loginCube{
+    width: 400px;
+    position: relative;
+    margin: 0px auto;
+}
+
+.cubeLeft{
+    width: 50px;
+    position: relative;
+    float: left;
+}
+
+.cubeRight{
+    width: 300px;
+    position: relative;
+    float: right;
+}
+
+.btn{
+    background-color: blue;
+    color: white;
+    border: solid 1px cadetblue;
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+}

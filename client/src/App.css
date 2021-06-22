@@ -1,3 +1,9 @@
 .App{
     height: 100%;
 }
+
+.lnk{
+    color: blue;
+    font-weight: bold;
+    font-family: arial;
+}
