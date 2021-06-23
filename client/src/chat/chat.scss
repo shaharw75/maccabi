@@ -13,7 +13,7 @@
 
     .channel-list {
         width: calc(20% - 12px);
-        border: 1px solid rgb(224, 224, 224);
+        border: 1px solid #0e62da;
         margin: 10px;
         margin-right: 0;
         border-right: none;
@@ -21,7 +21,7 @@
     }
 
     .channel-item {
-        border-bottom: 1px solid rgb(224, 224, 224);
+        border-bottom: 1px solid #0e62da;
         padding: 10px;
 
         div {
@@ -34,14 +34,15 @@
 
        
         &:hover {
-            background-color: rgb(224, 224, 224);
+            background-color: #0e62da;
+            color: white;
             cursor: pointer;
         }
     }
 
     .messages-panel {
         width: calc(80% - 12px);
-        border: 1px solid rgb(224, 224, 224);
+        border: 1px solid #0e62da;
         margin: 10px;
         margin-left: 0;
         height: calc(100% - 22px);
@@ -49,7 +50,7 @@
         flex-direction: column;
         align-items: flex-start;
 
-        .meesages-list {
+        .messages-list {
             align-self: stretch;
             height: 100%;
         }
@@ -57,7 +58,7 @@
         .messages-input {
             width: 100%;
             height: 40px;
-            border-top: 1px solid rgb(224, 224, 224);
+            border-top: 1px solid #0e62da;
             background-color: #f0f0f0;
             display: flex;
 
@@ -67,7 +68,7 @@
                 width: 100%;
                 margin-left: 15px;
                 border-radius: 15px;
-                border: 1px solid rgb(224, 224, 224);
+                border: 1px solid #0e62da;
 
                 &:focus {
                     border-radius: 15px;

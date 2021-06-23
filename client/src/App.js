@@ -28,7 +28,7 @@ class App extends React.Component {
 
     handleLogout = () => {
 
-      fetch(SERVER + '/logout');
+      fetch(SERVER + '/logout?userName=' + this.state.currentUser);
       window.location.href = '/login';
 
     }

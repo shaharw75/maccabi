@@ -12,19 +12,27 @@ export class Chat extends React.Component {
         socket: null,
         channel: null
     }
-    socket;
+    
+    socket; // the socket client
+    
     componentDidMount() {
         this.loadChannels();
         this.configureSocket();
     }
-
+    
+    // Socket client configuration
     configureSocket = () => {
+        
         var socket = socketClient(SERVER);
+        
+        // select channel
         socket.on('connection', () => {
             if (this.state.channel) {
                 this.handleChannelSelect(this.state.channel.id);
             }
         });
+        
+        // Update the channel participants from the server
         socket.on('channel', channel => {
             
             let channels = this.state.channels;
@@ -35,13 +43,15 @@ export class Chat extends React.Component {
             });
             this.setState({ channels });
         });
+        
+        // Update the channel in state of new message comming from the server
         socket.on('message', message => {
             
             let channels = this.state.channels
             channels.forEach(c => {
                 if (c.id === message.channel_id) {
                     if (!c.messages) {
-                        c.messages = [message];
+                        c.messages = [message]; // first message on list
                     } else {
                         c.messages.push(message);
                     }
@@ -51,34 +61,34 @@ export class Chat extends React.Component {
         });
         this.socket = socket;
     }
-
+    
+    // Loading the channels from the server to state memory
     loadChannels = async () => {
         fetch(SERVER + '/getChannels').then(async response => {
             let data = await response.json();
             this.setState({ channels: data.channels });
         })
     }
-
+    
+    // Get the selected channel from the channels, update the state and join the channel on the server
     handleChannelSelect = id => {
         let channel = this.state.channels.find(c => {
             return c.id === id;
         });
         this.setState({ channel });
-        this.socket.emit('channel-join', id, ack => {
+        this.socket.emit('channel-join', id, res => {
         });
     }
-
+    
+    // Send a new message to the server
     handleSendMessage = (channel_id, text) => {
         this.socket.emit('send-message', { channel_id, text, senderName: this.props.state.currentUser, id: Date.now() });
     }
 
     render() {
-        //alert(JSON.stringify(this.props.state))
+        
         return (
             <div className='chat-app'>
-                
-                
-                
                 
                 <ChannelList channels={this.state.channels} onSelectChannel={this.handleChannelSelect} currentUser={this.props.state.currentUser}/>
                 <MessagesPanel onSendMessage={this.handleSendMessage} channel={this.state.channel} currentUser={this.props.state.currentUser} />
