@@ -82,7 +82,8 @@ export class Chat extends React.Component {
     
     // Send a new message to the server
     handleSendMessage = (channel_id, text) => {
-        this.socket.emit('send-message', { channel_id, text, senderName: this.props.state.currentUser, id: Date.now() });
+        var currentTime = new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds();
+        this.socket.emit('send-message', { channel_id, text, senderName: this.props.state.currentUser, id: Date.now(), currentTime: currentTime });
     }
 
     render() {
