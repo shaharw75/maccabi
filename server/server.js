@@ -203,8 +203,8 @@ app.get("/login", (req, res) => {
 
     for (let [i, user] of json.entries()) {
       if (user.userName === userName && user.password === password) {
+        
         //Check if users already logged in
-
         for (let user of loggedInUsers) {
           if (user === userName) {
             existUserLoggedIn = true;
@@ -212,12 +212,12 @@ app.get("/login", (req, res) => {
           }
         }
 
-        if (existUserLoggedIn === false) {
+        if (existUserLoggedIn === false) { // OK for login
           const session = require("express-session");
           session.userName = userName;
           result = true;
           loggedInUsers.push(userName);
-        } else {
+        } else { // User already logged in
           reason = "User already logged in";
         }
 
@@ -228,6 +228,7 @@ app.get("/login", (req, res) => {
         break;
       }
     }
+
     if (
       result === false &&
       userExist === false &&
@@ -239,7 +240,9 @@ app.get("/login", (req, res) => {
       fs.writeFileSync("users.json", JSON.stringify(json));
       result = true;
     }
+    
     res.json({ message: result, reason: reason });
+
   } catch (ex) {
     console.log(ex);
     res.json({ message: "FAILED" });
@@ -248,13 +251,15 @@ app.get("/login", (req, res) => {
 
 // Logout
 app.get("/logout", (req, res) => {
+
   var userName = req.query.userName;
   
-
+  // Removing the user from the loggedIn user list
   if (loggedInUsers.length > 0) {
-    console.log(loggedInUsers.length);
+    
     var index = -1;
-    for (let [i, user] of loggedInUsers) {
+    for (let [i, user] of loggedInUsers.entries()) {
+        console.log(user + "---" + userName);
       if (user === userName) {
         index = i;
         break;
@@ -265,4 +270,7 @@ app.get("/logout", (req, res) => {
     const session = require("express-session");
     session.userName = null;
   }
+
+  res.json({ message: "OK" });
+
 });
