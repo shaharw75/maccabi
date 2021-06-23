@@ -26,7 +26,7 @@ export class Login extends React.Component {
       if (data.message === true) {
         this.props.setCurrentUser(userName);
         this.props.history.push("/chat/chat");
-      } else alert("FAILED LOGIN");
+      } else alert("FAILED LOGIN: " + data.reason);
     });
   };
 
