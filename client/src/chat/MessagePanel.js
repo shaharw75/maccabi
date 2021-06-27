@@ -36,7 +36,8 @@ export class MessagesPanel extends React.Component {
                         <button onClick={this.send}>Send</button>
                     </div>
                 }
-            </div>);
+            </div>
+            );
     }
 
 }

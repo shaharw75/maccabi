@@ -15,7 +15,6 @@ var io = require("socket.io")(http, {
 
 // Read the channels list from text file
 var fs = require("fs");
-const { METHODS } = require("http");
 var channels = JSON.parse(fs.readFileSync("channels.json", "utf8"));
 
 // Logged in users list
@@ -204,7 +203,7 @@ app.get("/login", (req, res) => {
     for (let [i, user] of json.entries()) {
       if (user.userName === userName && user.password === password) {
         
-        //Check if users already logged in
+        //Check if users already logged in from loggedInUsers list
         for (let user of loggedInUsers) {
           if (user === userName) {
             existUserLoggedIn = true;
@@ -259,7 +258,6 @@ app.get("/logout", (req, res) => {
     
     var index = -1;
     for (let [i, user] of loggedInUsers.entries()) {
-        console.log(user + "---" + userName);
       if (user === userName) {
         index = i;
         break;
